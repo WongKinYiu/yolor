@@ -1,2 +1,2 @@
-# yoto
-implementation of paper - You Only Train Once
+# yolo
+implementation of paper - You Only Learn One Representation
