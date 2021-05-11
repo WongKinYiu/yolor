@@ -40,6 +40,13 @@ cd /yolor
 
 </details>
 
+Prepare COCO dataset
+
+```
+cd /yolor
+bash scripts/get_coco.sh
+```
+
 ## Testing
 
 ## Training
