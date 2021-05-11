@@ -1,3 +1,5 @@
+![Implicit Modeling](https://github.com/WongKinYiu/yolor/blob/main/figure/implicit_modeling.png)
+
 ### 1. silence layer
 
 Usage:
