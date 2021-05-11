@@ -19,8 +19,8 @@ To reproduce the results in the paper, please use this branch.
 
 | Model | Test Size | AP<sup>val</sup> | AP<sub>50</sub><sup>val</sup> | AP<sub>75</sub><sup>val</sup> | AP<sub>S</sub><sup>val</sup> | AP<sub>M</sub><sup>val</sup> | AP<sub>L</sub><sup>val</sup> | weights |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| **YOLOR-P6** | 1280 | **52.5%** | **70.6%** | **57.4%** | **37.4%** | **57.3%** | **65.2%** |  |
-| **YOLOR-W6** | 1280 | **54.0%** | **72.1%** | **59.1%** | **38.1%** | **58.8%** | **67.0%** |  |
+| **YOLOR-P6** | 1280 | **52.5%** | **70.6%** | **57.4%** | **37.4%** | **57.3%** | **65.2%** | [yolor-p6.pt](https://drive.google.com/file/d/1WyzcN1-I0n8BoeRhi_xVt8C5msqdx_7k/view?usp=sharing) |
+| **YOLOR-W6** | 1280 | **54.0%** | **72.1%** | **59.1%** | **38.1%** | **58.8%** | **67.0%** | [yolor-w6.pt](https://drive.google.com/file/d/1KnkBzNxATKK8AiDXrW_qF-vRNOsICV0B/view?usp=sharing) |
 | **YOLOR-E6** | 1280 | **54.6%** | **72.5%** | **59.8%** | **39.9%** | **59.0%** | **67.9%** |  |
 | **YOLOR-D6** | 1280 | **55.4%** | **73.5%** | **60.6%** | **40.4%** | **60.1%** | **68.7%** |  |
 |  |  |  |  |  |  |  |  |
@@ -113,11 +113,24 @@ bash scripts/get_pretrain.sh
 ## Testing
 
 ```
+python test.py --img 1280 --conf 0.001 --iou 0.65 --batch 32 --device 0 --data data/coco.yaml --weights yolor-p6.pt --name yolor-p6_val
 ```
 
 You will get the results:
 
 ```
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.52471
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.70569
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.57419
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.37395
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.57292
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.65187
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.38975
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.65382
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.71349
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.58020
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.75261
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.82403
 ```
 
 ## Training
@@ -125,27 +138,32 @@ You will get the results:
 Single GPU training:
 
 ```
+python train.py --batch-size 8 --img 1280 1280 --data data/coco.yaml --cfg models/yolor-p6.yaml --weights '' --device 0 --name yolor-p6 --hyp hyp.scratch.1280.yaml --epochs 300
 ```
 
 Multiple GPU training:
 
 ```
+python -m torch.distributed.launch --nproc_per_node 2 --master_port 9527 train.py --batch-size 16 --img 1280 1280 --data data/coco.yaml --cfg models/yolor-p6.yaml --weights '' --sync-bn --device 0,1 --name yolor-p6 --hyp hyp.scratch.1280.yaml --epochs 300
 ```
 
 Training schedule in the paper:
 
 ```
+python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 train.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg models/yolor-p6.yaml --weights '' --sync-bn --device 0,1,2,3,4,5,6,7 --name yolor-p6 --hyp hyp.scratch.1280.yaml --epochs 300
+python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 tune.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg models/yolor-p6.yaml --weights 'runs/train/yolor-p6/weights/last_298.pt' --sync-bn --device 0,1,2,3,4,5,6,7 --name yolor-p6-tune --hyp hyp.finetune.1280.yaml --epochs 450
+python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 train.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg models/yolor-p6.yaml --weights 'runs/train/yolor-p6-tune/weights/epoch_424.pt' --sync-bn --device 0,1,2,3,4,5,6,7 --name yolor-p6-fine --hyp hyp.finetune.1280.yaml --epochs 450
 ```
 
 ## Inference
 
 ```
+python detect.py --source images/horses.jpg --weights yolor-p6.pt --conf 0.25 --img-size 1280 --device 0
 ```
 
 You will get the results:
 
-```
-```
+![horses](https://github.com/WongKinYiu/yolor/blob/paper/inference/output/horses.jpg)
 
 ## Citation
 
