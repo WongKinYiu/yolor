@@ -27,7 +27,7 @@ git clone https://github.com/JunnYu/mish-cuda
 cd mish-cuda
 python setup.py build install
 
-# install pytorch_wavelets if you want to dwt down-sampling module
+# install pytorch_wavelets if you want to use dwt down-sampling module
 # https://github.com/fbcotter/pytorch_wavelets
 cd /
 git clone https://github.com/fbcotter/pytorch_wavelets
