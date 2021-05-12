@@ -3,6 +3,8 @@ implementation of paper - [You Only Learn One Representation: Unified Network fo
 
 ![Unified Network](https://github.com/WongKinYiu/yolor/blob/main/figure/unifued_network.png)
 
+<img src="https://github.com/WongKinYiu/yolor/blob/main/figure/performance.png" height="480">
+
 To reproduce the results in the paper, please use [this branch](https://github.com/WongKinYiu/yolor/tree/paper).
 
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
