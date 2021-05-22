@@ -3,167 +3,47 @@ implementation of paper - [You Only Learn One Representation: Unified Network fo
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/you-only-learn-one-representation-unified/real-time-object-detection-on-coco)](https://paperswithcode.com/sota/real-time-object-detection-on-coco?p=you-only-learn-one-representation-unified)
 
-![Unified Network](https://github.com/WongKinYiu/yolor/blob/main/figure/unifued_network.png)
+<div align="center">
+  <img src="https://github.com/open-mmlab/mmdetection/blob/master/resources/mmdet-logo.png" width="600"/>
+</div>
 
-<img src="https://github.com/WongKinYiu/yolor/blob/main/figure/performance.png" height="480">
+We implement **YOLOR** on famous object detection toolbox [MMDetection](https://github.com/open-mmlab/mmdetection), the results show that **YOLOR** can work well with no matter one-stage/two-stage/multi-stage, anchor-free/anchor-based object detectors and instance segmentors.
 
-To reproduce the results in the paper, please use [this branch](https://github.com/WongKinYiu/yolor/tree/paper).
+#### Supported methods:
 
-| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
-| **YOLOR-P6** | 1280 | **52.6%** | **70.6%** | **57.6%** | **34.7%** | **56.6%** | **64.2%** | 49 *fps* |
-| **YOLOR-W6** | 1280 | **54.1%** | **72.0%** | **59.2%** | **36.3%** | **57.9%** | **66.1%** | 47 *fps* |
-| **YOLOR-E6** | 1280 | **54.8%** | **72.7%** | **60.0%** | **36.9%** | **58.7%** | **66.9%** | 37 *fps* |
-| **YOLOR-D6** | 1280 | **55.4%** | **73.3%** | **60.6%** | **38.0%** | **59.2%** | **67.1%** | 30 *fps* |
-|  |  |  |  |  |  |  |
-| **YOLOv4-P5** | 896 | **51.8%** | **70.3%** | **56.6%** | **33.4%** | **55.7%** | **63.4%** | 41 *fps* |
-| **YOLOv4-P6** | 1280 | **54.5%** | **72.6%** | **59.8%** | **36.6%** | **58.2%** | **65.5%** | 30 *fps* |
-| **YOLOv4-P7** | 1536 | **55.5%** | **73.4%** | **60.8%** | **38.4%** | **59.4%** | **67.7%** | 16 *fps* |
-|  |  |  |  |  |  |  |
+- [x] [Faster R-CNN (NeurIPS'2015)](https://arxiv.org/abs/1506.01497)
+- [x] [Mask R-CNN (ICCV'2017)](https://arxiv.org/abs/1703.06870)
+- [x] [FCOS (ICCV'2019)](https://arxiv.org/abs/1904.01355)
+- [x] [ATSS (CVPR'2020)](https://arxiv.org/abs/1912.02424)
+- [x] [Sparse R-CNN (CVPR'2021)](https://arxiv.org/abs/2011.12450)
 
-## Installation
+#### ResNet-50 backbone × Standard 1x training schedule
 
-Docker environment (recommended)
-<details><summary> <b>Expand</b> </summary>
+| Model | YOLOR | AP<sup>box</sup> | AP<sub>50</sub><sup>box</sup> | AP<sub>75</sub><sup>box</sup> | AP<sup>mask</sup> | AP<sub>50</sub><sup>mask</sup> | AP<sub>75</sub><sup>mask</sup> | config |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| **[Faster R-CNN](https://arxiv.org/abs/1506.01497)** |  | 37.4% | 58.1% | 40.4% | - | - | - | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py) |
+| **Faster R-CNN** | :heavy_check_mark: | **37.6%** | **58.5%** | **40.8%** | - | - | - |  |
+|  |  |  |  |  |  |  |  |  |
+| **[Mask R-CNN](https://arxiv.org/abs/1703.06870)** |  | 38.2% | 58.8% | 41.4% | 34.7% | 55.7% | 37.2% | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/mask_rcnn/mask_rcnn_r50_fpn_1x_coco.py) |
+| **Mask R-CNN** | :heavy_check_mark: | **38.3%** | **59.1%** | **41.9%** | **34.8%** | **55.8%** | **37.3%** |  |
+|  |  |  |  |  |  |  |  |  |
+| **[Sparse R-CNN](https://arxiv.org/abs/2011.12450)** |  | 37.9% | 56.0% | **40.5%** | - | - | - | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/sparse_rcnn/sparse_rcnn_r50_fpn_1x_coco.py) |
+| **Sparse R-CNN** | :heavy_check_mark: | **38.0%** | **56.3%** | **40.5%** | - | - | - |  |
+|  |  |  |  |  |  |  |  |  |
+| **[FCOS](https://arxiv.org/abs/1904.01355)** |  | **36.6%** | 56.0% | 38.8% | - | - | - | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/fcos/fcos_r50_caffe_fpn_gn-head_1x_coco.py) |
+| **FCOS** | :heavy_check_mark: | **36.6%** | **56.1%** | **39.1%** | - | - | - |  |
+|  |  |  |  |  |  |  |  |  |
+| **[ATSS](https://arxiv.org/abs/1912.02424)** |  | 39.4% | 57.6% | **42.8%** | - | - | - | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/atss/atss_r50_fpn_1x_coco.py) |
+| **ATSS** | :heavy_check_mark: | **39.6%** | **57.8%** | **42.8%** | - | - | - |  |
+|  |  |  |  |  |  |  |  |  |
 
-```
-# create the docker container, you can change the share memory size if you have more.
-nvidia-docker run --name yolor -it -v your_coco_path/:/coco/ -v your_code_path/:/yolor --shm-size=64g nvcr.io/nvidia/pytorch:20.11-py3
+#### ResNet-50 backbone × Best practice training schedule
 
-# apt install required packages
-apt update
-apt install -y zip htop screen libgl1-mesa-glx
-
-# pip install required packages
-pip install seaborn thop
-
-# install mish-cuda if you want to use mish activation
-# https://github.com/thomasbrandon/mish-cuda
-# https://github.com/JunnYu/mish-cuda
-cd /
-git clone https://github.com/JunnYu/mish-cuda
-cd mish-cuda
-python setup.py build install
-
-# install pytorch_wavelets if you want to use dwt down-sampling module
-# https://github.com/fbcotter/pytorch_wavelets
-cd /
-git clone https://github.com/fbcotter/pytorch_wavelets
-cd pytorch_wavelets
-pip install .
-
-# go to code folder
-cd /yolor
-```
-
-</details>
-
-Colab environment
-<details><summary> <b>Expand</b> </summary>
-  
-```
-git clone https://github.com/WongKinYiu/yolor
-cd yolor
-
-# pip install required packages
-pip install -qr requirements.txt
-
-# install mish-cuda if you want to use mish activation
-# https://github.com/thomasbrandon/mish-cuda
-# https://github.com/JunnYu/mish-cuda
-git clone https://github.com/JunnYu/mish-cuda
-cd mish-cuda
-python setup.py build install
-cd ..
-
-# install pytorch_wavelets if you want to use dwt down-sampling module
-# https://github.com/fbcotter/pytorch_wavelets
-git clone https://github.com/fbcotter/pytorch_wavelets
-cd pytorch_wavelets
-pip install .
-cd ..
-```
-
-</details>
-
-Prepare COCO dataset
-<details><summary> <b>Expand</b> </summary>
-
-```
-cd /yolor
-bash scripts/get_coco.sh
-```
-
-</details>
-
-Prepare pretrained weight
-<details><summary> <b>Expand</b> </summary>
-
-```
-cd /yolor
-bash scripts/get_pretrain.sh
-```
-
-</details>
-
-## Testing
-
-[`yolor_p6.pt`](https://drive.google.com/file/d/1Tdn3yqpZ79X7R1Ql0zNlNScB1Dv9Fp76/view?usp=sharing)
-
-```
-python test.py --data data/coco.yaml --img 1280 --batch 32 --conf 0.001 --iou 0.65 --device 0 --cfg cfg/yolor_p6.cfg --weights yolor_p6.pt --name yolor_p6_val
-```
-
-You will get the results:
-
-```
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.52510
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.70718
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.57520
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.37058
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.56878
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.66102
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.39181
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.65229
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.71441
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.57755
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.75337
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.84013
-```
-
-## Training
-
-Single GPU training:
-
-```
-python train.py --batch-size 8 --img 1280 1280 --data coco.yaml --cfg cfg/yolor_p6.cfg --weights '' --device 0 --name yolor_p6 --hyp hyp.scratch.1280.yaml --epochs 300
-```
-
-Multiple GPU training:
-
-```
-python -m torch.distributed.launch --nproc_per_node 2 --master_port 9527 train.py --batch-size 16 --img 1280 1280 --data coco.yaml --cfg cfg/yolor_p6.cfg --weights '' --device 0,1 --sync-bn --name yolor_p6 --hyp hyp.scratch.1280.yaml --epochs 300
-```
-
-Training schedule in the paper:
-
-```
-python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 train.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg cfg/yolor_p6.cfg --weights '' --device 0,1,2,3,4,5,6,7 --sync-bn --name yolor_p6 --hyp hyp.scratch.1280.yaml --epochs 300
-python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 tune.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg cfg/yolor_p6.cfg --weights 'runs/train/yolor_p6/weights/last_298.pt' --device 0,1,2,3,4,5,6,7 --sync-bn --name yolor_p6-tune --hyp hyp.finetune.1280.yaml --epochs 450
-python -m torch.distributed.launch --nproc_per_node 8 --master_port 9527 train.py --batch-size 64 --img 1280 1280 --data data/coco.yaml --cfg cfg/yolor_p6.cfg --weights 'runs/train/yolor_p6-tune/weights/epoch_424.pt' --device 0,1,2,3,4,5,6,7 --sync-bn --name yolor_p6-fine --hyp hyp.finetune.1280.yaml --epochs 450
-```
-
-## Inference
-
-[`yolor_p6.pt`](https://drive.google.com/file/d/1Tdn3yqpZ79X7R1Ql0zNlNScB1Dv9Fp76/view?usp=sharing)
-
-```
-python detect.py --source inference/images/horses.jpg --cfg cfg/yolor_p6.cfg --weights yolor_p6.pt --conf 0.25 --img-size 1280 --device 0
-```
-
-You will get the results:
-
-![horses](https://github.com/WongKinYiu/yolor/blob/main/inference/output/horses.jpg)
+| Model | YOLOR | AP<sup>box</sup> | AP<sub>50</sub><sup>box</sup> | AP<sub>75</sub><sup>box</sup> | AP<sup>mask</sup> | AP<sub>50</sub><sup>mask</sup> | AP<sub>75</sub><sup>mask</sup> | config |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| **Sparse R-CNN** |  | **45.0%** | 64.1% | 48.9% | - | - | - | [config](https://github.com/open-mmlab/mmdetection/blob/master/configs/sparse_rcnn/sparse_rcnn_r50_fpn_300_proposals_crop_mstrain_480-800_3x_coco.py) |
+| **Sparse R-CNN** | :heavy_check_mark: | **45.0%** | **64.3%** | **49.1%** | - | - | - |  |
+|  |  |  |  |  |  |  |  |  |
 
 ## Citation
 
@@ -185,5 +65,6 @@ You will get the results:
 * [https://github.com/WongKinYiu/ScaledYOLOv4](https://github.com/WongKinYiu/ScaledYOLOv4)
 * [https://github.com/ultralytics/yolov3](https://github.com/ultralytics/yolov3)
 * [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
+* [https://github.com/open-mmlab/mmdetection](https://github.com/open-mmlab/mmdetection)
 
 </details>
