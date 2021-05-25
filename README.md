@@ -26,6 +26,8 @@ To reproduce the results in the paper, please use this branch.
 | **YOLOR-E6** | 1280 | **54.6%** | **72.5%** | **59.8%** | **39.9%** | **59.0%** | **67.9%** | 684G | [yolor-e6.pt](https://drive.google.com/file/d/1jVrq8R1TA60XTUEqqljxAPlt0M_MAGC8/view?usp=sharing) |
 | **YOLOR-D6** | 1280 | **55.4%** | **73.5%** | **60.6%** | **40.4%** | **60.1%** | **68.7%** | 937G | [yolor-d6.pt](https://drive.google.com/file/d/1WX33ymg_XJLUJdoSf5oUYGHAtpSG2gj8/view?usp=sharing) |
 |  |  |  |  |  |  |  |  |
+| **YOLOR-S</sub><sup>3</sup>**<sub>S2D</sub> | 640 | **39.3%** | **58.2%** | **42.4%** | **21.3%** | **44.6%** | **52.6%** | 18G |  |
+| **YOLOR-S</sub><sup>3</sup>**<sub>DWT</sub> | 640 | **39.4%** | **58.3%** | **42.5%** | **21.7%** | **44.3%** | **53.0%** | 18G |  |
 | **YOLOR-S</sub><sup>4</sup>**<sub>S2D</sub> | 640 | **36.9%** | **55.3%** | **39.7%** | **18.1%** | **41.9%** | **50.4%** | 16G | [weights](https://drive.google.com/file/d/1rFoRk1ZoKvE8kbxAl2ABBy6m9Zl6_k4Y/view?usp=sharing) |
 | **YOLOR-S</sub><sup>4</sup>**<sub>DWT</sub> | 640 | **37.0%** | **55.3%** | **39.9%** | **18.4%** | **41.9%** | **51.0%** | 16G | [weights](https://drive.google.com/file/d/1IZ1ix1hwUjEMcCMpl67CHQp98XOjcIsv/view?usp=sharing) |
 |  |  |  |  |  |  |  |  |
