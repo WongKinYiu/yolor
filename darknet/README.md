@@ -1,6 +1,6 @@
 ## Model Zoo
 
-| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
+| Model | Test Size | AP<sup>val</sup> | AP<sub>50</sub><sup>val</sup> | AP<sub>75</sub><sup>val</sup> | AP<sub>S</sub><sup>val</sup> | AP<sub>M</sub><sup>val</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | **YOLOv4-CSP** | 640 | 48.8% | **67.5%** | 53.1% | **33.1%** | 54.1% | 62.3% | 76 *fps* |
 | **YOLOR-CSP** | 640 | **49.1%** | **67.5%** | **53.5%** | 32.5% | **54.3%** | **62.6%** | - |
