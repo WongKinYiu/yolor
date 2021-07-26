@@ -35,6 +35,13 @@ To reproduce the results in the paper, please use this branch.
 | **YOLOR-S<sup>4</sup>**<sub>DWT</sub> | 640 | **37.0%** | **55.3%** | **39.9%** | **18.4%** | **41.9%** | **51.0%** | 16G | [weights](https://drive.google.com/file/d/1IZ1ix1hwUjEMcCMpl67CHQp98XOjcIsv/view?usp=sharing) |
 |  |  |  |  |  |  |  |  |
 
+New training scheme: train 300 epochs only.
+
+| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
+| **YOLOR-W6** | 1280 | **54.7%** | **72.2%** | **59.8%** | **36.7%** | **58.7%** | **66.7%** | 47 *fps* |
+|  |  |  |  |  |  |  |
+
 ## Installation
 
 Docker environment (recommended)
