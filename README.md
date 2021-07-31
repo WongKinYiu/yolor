@@ -40,6 +40,7 @@ New training scheme: train 300 epochs only.
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
 | **YOLOR-W6** | 1280 | **54.7%** | **72.2%** | **59.8%** | **36.7%** | **58.7%** | **66.7%** | 47 *fps* |
+| **YOLOR-E6** | 1280 | **55.5%** | **73.1%** | **60.7%** | **37.9%** | **59.2%** | **67.2%** | 37 *fps* |
 |  |  |  |  |  |  |  |
 
 ## Installation
