@@ -6,11 +6,35 @@ sys.path.append('./')  # to run '$ python *.py' files in subdirectories
 
 import torch
 import torch.nn as nn
-
 import models
 from models.experimental import attempt_load
 from utils.activations import Hardswish
 from utils.general import set_logging, check_img_size
+
+
+# need convert SyncBatchNorm to BatchNorm2d
+def convert_sync_batchnorm_to_batchnorm(module):
+    module_output = module
+    if isinstance(module, torch.nn.modules.batchnorm.SyncBatchNorm):
+        module_output = torch.nn.BatchNorm2d(module.num_features,
+                                             module.eps, module.momentum,
+                                             module.affine,
+                                             module.track_running_stats)
+
+        if module.affine:
+            with torch.no_grad():
+                module_output.weight = module.weight
+                module_output.bias = module.bias
+        module_output.running_mean = module.running_mean
+        module_output.running_var = module.running_var
+        module_output.num_batches_tracked = module.num_batches_tracked
+        if hasattr(module, "qconfig"):
+            module_output.qconfig = module.qconfig
+    for name, child in module.named_children():
+        module_output.add_module(name, convert_sync_batchnorm_to_batchnorm(child))
+    del module
+    return module_output
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -26,6 +50,12 @@ if __name__ == '__main__':
     # Load PyTorch model
     model = attempt_load(opt.weights, map_location=torch.device('cpu'))  # load FP32 model
     labels = model.names
+    model.eval()
+    model = model.to("cpu")
+
+    model = convert_sync_batchnorm_to_batchnorm(model)
+
+    print(model)
 
     # Checks
     gs = int(max(model.stride))  # grid size (max stride)
@@ -44,6 +74,8 @@ if __name__ == '__main__':
     model.model[-1].export = True  # set Detect() layer export=True
     y = model(img)  # dry run
 
+    print(y[0].shape)
+
     # TorchScript export
     try:
         print('\nStarting TorchScript export with torch %s...' % torch.__version__)
@@ -57,16 +89,34 @@ if __name__ == '__main__':
     # ONNX export
     try:
         import onnx
+        import onnxruntime as ort
 
         print('\nStarting ONNX export with onnx %s...' % onnx.__version__)
-        f = opt.weights.replace('.pt', '.onnx')  # filename
+        f = opt.weights.replace('.pt', f'-{opt.img_size[0]}-{opt.img_size[1]}.onnx')  # filename
         torch.onnx.export(model, img, f, verbose=False, opset_version=12, input_names=['images'],
                           output_names=['classes', 'boxes'] if y is None else ['output'])
 
         # Checks
         onnx_model = onnx.load(f)  # load onnx model
         onnx.checker.check_model(onnx_model)  # check onnx model
-        # print(onnx.helper.printable_graph(onnx_model.graph))  # print a human readable model
+        print(onnx.helper.printable_graph(onnx_model.graph))  # print a human readable model
+
+        do_simplify = True
+        if do_simplify:
+            from onnxsim import simplify
+
+            onnx_model, check = simplify(onnx_model, check_n=3)
+            assert check, 'assert simplify check failed'
+            onnx.save(onnx_model, f)
+
+        session = ort.InferenceSession(f)
+
+        for ii in session.get_inputs():
+            print("input: ", ii)
+
+        for oo in session.get_outputs():
+            print("output: ", oo)
+
         print('ONNX export success, saved as %s' % f)
     except Exception as e:
         print('ONNX export failure: %s' % e)
@@ -86,3 +136,9 @@ if __name__ == '__main__':
 
     # Finish
     print('\nExport complete (%.2fs). Visualize with https://github.com/lutzroeder/netron.' % (time.time() - t))
+
+    """
+    PYTHONPATH=. python3 ./models/export.py --weights ./weights/yolor-p6.pt --img-size 640 
+    PYTHONPATH=. python3 ./models/export.py --weights ./weights/yolor-p6.pt --img-size 320 
+    PYTHONPATH=. python3 ./models/export.py --weights ./weights/yolor-p6.pt --img-size 1280 
+    """
