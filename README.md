@@ -45,6 +45,13 @@ New training scheme: train 300 epochs only.
 | **YOLOR-D6** | 1280 | **56.1%** | **73.8%** | **61.4%** | **38.8%** | **59.9%** | **68.4%** | 30 *fps* |
 |  |  |  |  |  |  |  |
 
+Developing...
+
+| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
+| **YOLOR-D6** | 1280 | **57.0%** | **74.7%** | **62.2%** | **39.7%** | **60.6%** | **69.0%** | 30 *fps* |
+|  |  |  |  |  |  |  |
+
 ## Installation
 
 Docker environment (recommended)
