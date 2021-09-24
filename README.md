@@ -49,6 +49,7 @@ Developing...
 
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
+| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | **39.1%** | **60.1%** | **68.2%** | 37 *fps* |
 | **YOLOR-D6** | 1280 | **57.0%** | **74.7%** | **62.2%** | **39.7%** | **60.6%** | **69.0%** | 30 *fps* |
 |  |  |  |  |  |  |  |
 
