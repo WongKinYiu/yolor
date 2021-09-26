@@ -34,6 +34,12 @@ To reproduce the inference speed, please see [darknet](https://github.com/WongKi
 | [**YOLOR-CSP-X***](/cfg/yolor_csp_x.cfg) | 640 | **51.5%** | **69.9%** | **56.1%** | **35.8%** | **56.8%** | **66.1%** | [weights](https://drive.google.com/file/d/1NbMG3ivuBQ4S8kEhFJ0FIqOQXevGje_w/view?usp=sharing) |
 |  |  |  |  |  |  |  |
 
+Developing...
+
+| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| **YOLOR-CSP** | 640 | **50.7%** | **69.2%** | **55.2%** | **31.2%** | **55.0%** | **63.6%** |
+
 ## Installation
 
 Docker environment (recommended)
