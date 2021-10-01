@@ -39,6 +39,7 @@ Developing...
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | **YOLOR-CSP** | 640 | **50.7%** | **69.2%** | **55.2%** | **31.2%** | **55.0%** | **63.6%** |
+| **YOLOR-CSP-X** | 640 | **52.5%** | **70.6%** | **57.1%** | **33.5%** | **56.8%** | **65.6%** |
 
 ## Installation
 
