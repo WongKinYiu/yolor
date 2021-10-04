@@ -7,14 +7,14 @@ implementation of paper - [You Only Learn One Representation: Unified Network fo
 
 <img src="https://github.com/WongKinYiu/yolor/blob/main/figure/performance.png" height="480">
 
-To reproduce the results in the paper, please use [this branch](https://github.com/WongKinYiu/yolor/tree/paper).
+To get the results on the table, please use [this branch](https://github.com/WongKinYiu/yolor/tree/paper).
 
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
-| **YOLOR-P6** | 1280 | **52.6%** | **70.6%** | **57.6%** | **34.7%** | **56.6%** | **64.2%** | 49 *fps* |
-| **YOLOR-W6** | 1280 | **54.1%** | **72.0%** | **59.2%** | **36.3%** | **57.9%** | **66.1%** | 47 *fps* |
-| **YOLOR-E6** | 1280 | **54.8%** | **72.7%** | **60.0%** | **36.9%** | **58.7%** | **66.9%** | 37 *fps* |
-| **YOLOR-D6** | 1280 | **55.4%** | **73.3%** | **60.6%** | **38.0%** | **59.2%** | **67.1%** | 30 *fps* |
+| **YOLOR-P6** | 1280 | **54.1%** | **71.8%** | **59.3%** | **36.2%** | **58.1%** | **65.8%** | 49 *fps* |
+| **YOLOR-W6** | 1280 | **55.5%** | **73.2%** | **60.6%** | **37.6%** | **59.5%** | **67.7%** | 47 *fps* |
+| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | **39.1%** | **60.1%** | **68.2%** | 37 *fps* |
+| **YOLOR-D6** | 1280 | **57.3%** | **75.0%** | **62.7%** | **40.4%** | **61.2%** | **69.2%** | 30 *fps* |
 |  |  |  |  |  |  |  |
 | **YOLOv4-P5** | 896 | **51.8%** | **70.3%** | **56.6%** | **33.4%** | **55.7%** | **63.4%** | 41 *fps* |
 | **YOLOv4-P6** | 1280 | **54.5%** | **72.6%** | **59.8%** | **36.6%** | **58.2%** | **65.5%** | 30 *fps* |
