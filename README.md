@@ -5,6 +5,16 @@ implementation of paper - [You Only Learn One Representation: Unified Network fo
 
 <img src="https://github.com/WongKinYiu/yolor/blob/main/figure/performance.png" height="480">
 
+Developing... [(weights)](https://github.com/WongKinYiu/yolor/releases/tag/weights)
+
+| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
+| **YOLOR-P6** | 1280 | **54.1%** | **71.8%** | **59.3%** | **36.2%** | **58.1%** | **65.8%** | 49 *fps* |
+| **YOLOR-W6** | 1280 | **55.5%** | **73.2%** | **60.6%** | **37.6%** | **59.5%** | **67.7%** | 47 *fps* |
+| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | **39.1%** | **60.1%** | **68.2%** | 37 *fps* |
+| **YOLOR-D6** | 1280 | **57.3%** | **75.0%** | **62.7%** | **40.4%** | **61.2%** | **69.2%** | 30 *fps* |
+|  |  |  |  |  |  |  |
+
 To reproduce the results in the paper, please use this branch.
 
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
@@ -43,16 +53,6 @@ New training scheme: train 300 epochs only.
 | **YOLOR-W6** | 1280 | **54.7%** | **72.2%** | **59.8%** | **36.7%** | **58.7%** | **66.7%** | 47 *fps* |
 | **YOLOR-E6** | 1280 | **55.5%** | **73.1%** | **60.7%** | **37.9%** | **59.2%** | **67.2%** | 37 *fps* |
 | **YOLOR-D6** | 1280 | **56.1%** | **73.8%** | **61.4%** | **38.8%** | **59.9%** | **68.4%** | 30 *fps* |
-|  |  |  |  |  |  |  |
-
-Developing...
-
-| Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | AP<sub>S</sub><sup>test</sup> | AP<sub>M</sub><sup>test</sup> | AP<sub>L</sub><sup>test</sup> | batch1 throughput |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | 
-| **YOLOR-P6** | 1280 | **54.1%** | **71.8%** | **59.3%** | **36.2%** | **58.1%** | **65.8%** | 49 *fps* |
-| **YOLOR-W6** | 1280 | **55.5%** | **73.2%** | **60.6%** | **37.6%** | **59.5%** | **67.7%** | 47 *fps* |
-| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | **39.1%** | **60.1%** | **68.2%** | 37 *fps* |
-| **YOLOR-D6** | 1280 | **57.3%** | **75.0%** | **62.7%** | **40.4%** | **61.2%** | **69.2%** | 30 *fps* |
 |  |  |  |  |  |  |  |
 
 ## Installation
