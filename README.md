@@ -9,12 +9,12 @@ implementation of paper - [You Only Learn One Representation: Unified Network fo
 
 | Model | Backbone | Size | Parameter | FLOPs | Epoch | AP<sup>val</sup> | AP<sub>50</sub><sup>val</sup> | AP<sub>75</sub><sup>val</sup> |
 | :-- | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|  | [ResNet](https://arxiv.org/abs/1512.03385) | 640 | 34.3M | 65.5G | 300 |  |  |  |
-|  | [ResNeXt](https://arxiv.org/abs/1611.05431) | 640 | 32.3M | 60.7G | 300 |  |  |  |
-|  | [Darknet](https://arxiv.org/abs/1804.02767) | 640 | 52.9M | 120.6G | 300 |  |  |  
+|  | [ResNet](https://arxiv.org/abs/1512.03385) | 640 | 34.3M | 65.5G | 300 | 47.6% | 65.8% | 51.6% |
+|  | [ResNeXt](https://arxiv.org/abs/1611.05431) | 640 | 32.3M | 60.7G | 300 | 47.7% | 66.0% | 52.0% |
+|  | [Darknet](https://arxiv.org/abs/1804.02767) | 640 | 52.9M | 120.6G | 300 | 49.5% | 67.9% | 53.7% |
 |  | [VoVNet](https://arxiv.org/abs/1904.09730) | 640 |  |  | 300 |  |  |  |
 |  | [HarDNet](https://arxiv.org/abs/1909.00948) | 640 |  |  | 300 |  |  |  |
-|  | [GhostNet](https://arxiv.org/abs/1911.11907) | 640 | 19.4M | 36.9G | 300 |  |  |  |
+|  | [GhostNet](https://arxiv.org/abs/1911.11907) | 640 | 19.4M | 36.9G | 300 | 45.9% | 64.4% | 49.4% |
 |  | [ELAN]() | 640 |  |  | 300 |  |  |  |
 
 ## Module
