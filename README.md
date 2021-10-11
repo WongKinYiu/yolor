@@ -42,6 +42,17 @@ Developing...
 | **YOLOR-CSP** | 640 | **51.1%** | **69.6%** | **55.7%** | **31.7%** | **55.3%** | **64.7%** |
 | **YOLOR-CSP-X** | 640 | **53.0%** | **71.4%** | **57.9%** | **33.7%** | **57.1%** | **66.8%** |
 
+Train from scratch for 300 epochs...
+
+| Model | Info | Test Size | AP |
+| :-- | :-- | :-: | :-: |
+| **YOLOR-CSP** | [evolution](https://github.com/ultralytics/yolov3/issues/392) | 640 | **48.0%** |
+| **YOLOR-CSP** | [strategy](https://openaccess.thecvf.com/content/ICCV2021W/LPCV/html/Wang_Exploring_the_Power_of_Lightweight_YOLOv4_ICCVW_2021_paper.html) | 640 | **50.0%** |
+| **YOLOR-CSP** | [strategy](https://openaccess.thecvf.com/content/ICCV2021W/LPCV/html/Wang_Exploring_the_Power_of_Lightweight_YOLOv4_ICCVW_2021_paper.html) + [simOTA](https://arxiv.org/abs/2107.08430) | 640 | **51.1%** |
+|  |  |  |  |
+| **YOLOR-CSP-X** | [strategy](https://openaccess.thecvf.com/content/ICCV2021W/LPCV/html/Wang_Exploring_the_Power_of_Lightweight_YOLOv4_ICCVW_2021_paper.html) | 640 | **51.5%** |
+| **YOLOR-CSP-X** | [strategy](https://openaccess.thecvf.com/content/ICCV2021W/LPCV/html/Wang_Exploring_the_Power_of_Lightweight_YOLOv4_ICCVW_2021_paper.html) + [simOTA](https://arxiv.org/abs/2107.08430) | 640 | **53.0%** |
+
 ## Installation
 
 Docker environment (recommended)
