@@ -11,16 +11,17 @@ To get the results on the table, please use [this branch](https://github.com/Won
 
 | Model | Test Size | AP<sup>test</sup> | AP<sub>50</sub><sup>test</sup> | AP<sub>75</sub><sup>test</sup> | batch1 throughput | batch32 inference |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: |
-| **YOLOR-P6** | 1280 | **54.1%** | **71.8%** | **59.3%** | 49 *fps* | 8.3 *ms* |
-| **YOLOR-W6** | 1280 | **55.5%** | **73.2%** | **60.6%** | 47 *fps* | 10.7 *ms* |
-| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | 37 *fps* | 17.1 *ms* |
-| **YOLOR-D6** | 1280 | **57.3%** | **75.0%** | **62.7%** | 30 *fps* | 21.8 *ms* |
-| **YOLOR-D6*** | 1280 | **57.8%** | **75.5%** | **63.3%** | 30 *fps* | 21.8 *ms* |
+| **YOLOR-P6** | 1280 | **54.1%** | **71.8%** | **59.3%** | 76 *fps* | 8.3 *ms* |
+| **YOLOR-W6** | 1280 | **55.5%** | **73.2%** | **60.6%** | 66 *fps* | 10.7 *ms* |
+| **YOLOR-E6** | 1280 | **56.4%** | **74.1%** | **61.6%** | 45 *fps* | 17.1 *ms* |
+| **YOLOR-D6** | 1280 | **57.3%** | **75.0%** | **62.7%** | 34 *fps* | 21.8 *ms* |
+| **YOLOR-D6*** | 1280 | **57.8%** | **75.5%** | **63.3%** | 34 *fps* | 21.8 *ms* |
 |  |  |  |  |  |  |  |
-| **YOLOv4-P5** | 896 | **51.8%** | **70.3%** | **56.6%** | 41 *fps* | - |
-| **YOLOv4-P6** | 1280 | **54.5%** | **72.6%** | **59.8%** | 30 *fps* | - |
-| **YOLOv4-P7** | 1536 | **55.5%** | **73.4%** | **60.8%** | 16 *fps* | - |
+| **YOLOv4-P5** | 896 | **51.8%** | **70.3%** | **56.6%** | 41 *fps* (old) | - |
+| **YOLOv4-P6** | 1280 | **54.5%** | **72.6%** | **59.8%** | 30 *fps* (old) | - |
+| **YOLOv4-P7** | 1536 | **55.5%** | **73.4%** | **60.8%** | 16 *fps* (old) | - |
 |  |  |  |  |  |  |  |
+* Fix the speed bottleneck on our NFS, many thanks to NCHC, TWCC, and NARLabs support teams.
 
 To reproduce the inference speed, please see [darknet](https://github.com/WongKinYiu/yolor/tree/main/darknet).
 
