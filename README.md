@@ -106,7 +106,7 @@ Colab environment
 # https://github.com/JunnYu/mish-cuda
 !git clone https://github.com/JunnYu/mish-cuda
 %cd mish-cuda
-%python setup.py build install
+!python setup.py build install
 %cd ..
 
 # install pytorch_wavelets if you want to use dwt down-sampling module
