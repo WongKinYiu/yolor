@@ -95,26 +95,26 @@ Colab environment
 <details><summary> <b>Expand</b> </summary>
   
 ```
-git clone https://github.com/WongKinYiu/yolor
-cd yolor
+!git clone https://github.com/WongKinYiu/yolor
+%cd yolor
 
 # pip install required packages
-pip install -qr requirements.txt
+%pip install -qr requirements.txt
 
 # install mish-cuda if you want to use mish activation
 # https://github.com/thomasbrandon/mish-cuda
 # https://github.com/JunnYu/mish-cuda
-git clone https://github.com/JunnYu/mish-cuda
-cd mish-cuda
-python setup.py build install
-cd ..
+!git clone https://github.com/JunnYu/mish-cuda
+%cd mish-cuda
+%python setup.py build install
+%cd ..
 
 # install pytorch_wavelets if you want to use dwt down-sampling module
 # https://github.com/fbcotter/pytorch_wavelets
-git clone https://github.com/fbcotter/pytorch_wavelets
-cd pytorch_wavelets
-pip install .
-cd ..
+!git clone https://github.com/fbcotter/pytorch_wavelets
+%cd pytorch_wavelets
+%pip install .
+%cd ..
 ```
 
 </details>
