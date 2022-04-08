@@ -1,3 +1,5 @@
+import ntpath
+import numpy as np
 import argparse
 import time
 from pathlib import Path
@@ -14,11 +16,18 @@ from utils.general import check_img_size, non_max_suppression, apply_classifier,
 from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized
 
+from torch.utils.tensorboard import SummaryWriter
+
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://'))
+
+    a = weights[0].split('/')[-1]
+    writer = SummaryWriter(f'runs/{a}')
+    # clock_size = {'small': 1, 'medium' : 2, 'large' :3}
+    
 
     # Directories
     save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
@@ -60,6 +69,9 @@ def detect(save_img=False):
     img = torch.zeros((1, 3, imgsz, imgsz), device=device)  # init img
     _ = model(img.half() if half else img) if device.type != 'cpu' else None  # run once
     for path, img, im0s, vid_cap in dataset:
+        size, name, index, _ = ntpath.basename(path).split('.')
+        hparam_dict = {'name': name, 'size' : size}
+        metrics = {}
         img = torch.from_numpy(img).to(device)
         img = img.half() if half else img.float()  # uint8 to fp16/32
         img /= 255.0  # 0 - 255 to 0.0 - 1.0
@@ -69,6 +81,8 @@ def detect(save_img=False):
         # Inference
         t1 = time_synchronized()
         pred = model(img, augment=opt.augment)[0]
+        # writer.add_graph(model, img)
+        # writer.close()
 
         # Apply NMS
         pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
@@ -79,6 +93,7 @@ def detect(save_img=False):
             pred = apply_classifier(pred, modelc, img, im0s)
 
         # Process detections
+        n_clock = 0
         for i, det in enumerate(pred):  # detections per image
             if webcam:  # batch_size >= 1
                 p, s, im0 = Path(path[i]), '%g: ' % i, im0s[i].copy()
@@ -93,6 +108,7 @@ def detect(save_img=False):
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()
 
+                n_clock += (det[:, -1] == 74).sum()
                 # Print results
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class
@@ -108,7 +124,7 @@ def detect(save_img=False):
 
                     if save_img or view_img:  # Add bbox to image
                         label = '%s %.2f' % (names[int(cls)], conf)
-                        plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
+                        plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=2)
 
             # Print time (inference + NMS)
             print('%sDone. (%.3fs)' % (s, t2 - t1))
@@ -123,6 +139,9 @@ def detect(save_img=False):
             if save_img:
                 if dataset.mode == 'images':
                     cv2.imwrite(save_path, im0)
+                    writer.add_image(ntpath.basename(save_path),img_tensor=np.transpose(im0[:,:,::-1], (2,0,1)))
+                    
+                    writer.close()
                 else:
                     if vid_path != save_path:  # new video
                         vid_path = save_path
@@ -135,7 +154,9 @@ def detect(save_img=False):
                         h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                         vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*fourcc), fps, (w, h))
                     vid_writer.write(im0)
-
+        metrics['#predicted'] = int(n_clock)
+        metrics['sec'] = t2 - t1
+        writer.add_hparams(hparam_dict=hparam_dict,metric_dict=metrics, run_name=ntpath.basename(path))
     if save_txt or save_img:
         print('Results saved to %s' % save_dir)
 
