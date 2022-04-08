@@ -20,7 +20,8 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 def detect(save_img=False):
-    source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
+    source, weights, view_img, save_txt, imgsz, build_graph = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, opt.build_graph
+
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://'))
 
@@ -81,8 +82,10 @@ def detect(save_img=False):
         # Inference
         t1 = time_synchronized()
         pred = model(img, augment=opt.augment)[0]
-        # writer.add_graph(model, img)
-        # writer.close()
+        if build_graph:
+            writer.add_graph(model, img)
+            writer.close()
+            build_graph = False
 
         # Apply NMS
         pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
@@ -181,6 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('--project', default='runs/detect', help='save results to project/name')
     parser.add_argument('--name', default='exp', help='save results to project/name')
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
+    parser.add_argument('--build-graph', action='store_true', help='build graph to tensorboard')
     opt = parser.parse_args()
     print(opt)
 
