@@ -71,7 +71,7 @@ def detect(save_img=False):
     _ = model(img.half() if half else img) if device.type != 'cpu' else None  # run once
     for path, img, im0s, vid_cap in dataset:
         size, name, index, _ = ntpath.basename(path).split('.')
-        hparam_dict = {'name': name, 'size' : size}
+        hparam_dict = {}
         metrics = {}
         img = torch.from_numpy(img).to(device)
         img = img.half() if half else img.float()  # uint8 to fp16/32
@@ -81,6 +81,7 @@ def detect(save_img=False):
 
         # Inference
         t1 = time_synchronized()
+        print(f"image shape: {img.shape}")
         pred = model(img, augment=opt.augment)[0]
         if build_graph:
             writer.add_graph(model, img)
@@ -159,6 +160,8 @@ def detect(save_img=False):
                     vid_writer.write(im0)
         metrics['#predicted'] = int(n_clock)
         metrics['sec'] = t2 - t1
+        hparam_dict['name'] = name
+        hparam_dict['size'] = size
         writer.add_hparams(hparam_dict=hparam_dict,metric_dict=metrics, run_name=ntpath.basename(path))
     if save_txt or save_img:
         print('Results saved to %s' % save_dir)

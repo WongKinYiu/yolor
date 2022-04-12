@@ -21,7 +21,7 @@ def attempt_download(weights):
     file = Path(weights).name
 
     msg = weights + ' missing, try downloading from https://github.com/WongKinYiu/yolor/releases/'
-    models = ['yolor-p6.pt', 'yolor-w6.pt', 'yolor-e6.pt', 'yolor-d6.pt']  # available models
+    models = ['yolor_p6.pt', 'yolor-w6.pt', 'yolor-e6.pt', 'yolor-d6.pt']  # available models
 
     if file in models and not os.path.isfile(weights):
 
