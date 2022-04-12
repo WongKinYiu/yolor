@@ -16,7 +16,7 @@ from utils.general import set_logging, check_img_size
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default='yolor_w6_paper_detecthead2.pt', help='weights path')
+    parser.add_argument('--weights', type=str, default='IDetect.pt', help='weights path')
     parser.add_argument('--img-size', nargs='+', type=int, default=[1280, 1280], help='image size')  # height, width
     parser.add_argument('--batch-size', type=int, default=1, help='batch size')
     opt = parser.parse_args()
@@ -27,6 +27,7 @@ if __name__ == '__main__':
 
     # Load PyTorch model
     model = attempt_load(opt.weights, map_location=torch.device('cpu'))  # load FP32 model
+    
     labels = model.names
 
     # Checks
