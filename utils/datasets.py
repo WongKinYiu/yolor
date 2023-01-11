@@ -224,6 +224,61 @@ class LoadImages:  # for inference
         return self.nf  # number of files
 
 
+
+class CustomLoadImages:  # for inference
+    def __init__(self, path, img_size=640, auto_size=32):
+        self.img_size = img_size
+        self.auto_size = auto_size
+        self.mode = 'images'
+        self.nf = 1
+
+    def __iter__(self):
+        self.count = 0
+        return self
+
+    def __next__(self):
+        if self.count == self.nf:
+            raise StopIteration
+        path = self.files[self.count]
+
+        if self.video_flag[self.count]:
+            # Read video
+            self.mode = 'video'
+            ret_val, img0 = self.cap.read()
+            if not ret_val:
+                self.count += 1
+                self.cap.release()
+                if self.count == self.nf:  # last video
+                    raise StopIteration
+                else:
+                    path = self.files[self.count]
+                    self.new_video(path)
+                    ret_val, img0 = self.cap.read()
+
+            self.frame += 1
+            print('video %g/%g (%g/%g) %s: ' % (self.count + 1, self.nf, self.frame, self.nframes, path), end='')
+
+        else:
+            # Read image
+            self.count += 1
+            img0 = cv2.imread(path)  # BGR
+            assert img0 is not None, 'Image Not Found ' + path
+            print('image %g/%g %s: ' % (self.count, self.nf, path), end='')
+
+        # Padded resize
+        img = letterbox(img0, new_shape=self.img_size, auto_size=self.auto_size)[0]
+
+        # Convert
+        img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
+        img = np.ascontiguousarray(img)
+
+        return path, img, img0, self.cap
+
+
+    def __len__(self):
+        return self.nf  # number of files
+
+
 class LoadWebcam:  # for inference
     def __init__(self, pipe='0', img_size=640):
         self.img_size = img_size
