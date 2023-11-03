@@ -201,11 +201,11 @@ You will get the results:
 ## Citation
 
 ```
-@article{wang2021you,
+@article{wang2023you,
   title={You Only Learn One Representation: Unified Network for Multiple Tasks},
   author={Wang, Chien-Yao and Yeh, I-Hau and Liao, Hong-Yuan Mark},
-  journal={arXiv preprint arXiv:2105.04206},
-  year={2021}
+  journal={Journal of Information Science and Engineering},
+  year={2023}
 }
 ```
 
