@@ -40,7 +40,12 @@ def detect(save_img=False):
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
     # Load model
-    model = Darknet(cfg, imgsz).cuda()
+    # Arguman 'cpu' should be controlled, if 'cpu' is set model should be initialized with .cpu() method
+    # Older version of code cannot run without nvidia driver because of this reason
+    if device.type != 'cpu' 
+        model = Darknet(cfg, imgsz).cuda()
+    else
+        model = Darknet(cfg, imgsz).cpu()
     model.load_state_dict(torch.load(weights[0], map_location=device)['model'])
     #model = attempt_load(weights, map_location=device)  # load FP32 model
     #imgsz = check_img_size(imgsz, s=model.stride.max())  # check img_size
