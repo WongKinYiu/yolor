@@ -31,18 +31,18 @@ To reproduce the results in the paper, please use this branch.
 
 | Model | Test Size | AP<sup>val</sup> | AP<sub>50</sub><sup>val</sup> | AP<sub>75</sub><sup>val</sup> | AP<sub>S</sub><sup>val</sup> | AP<sub>M</sub><sup>val</sup> | AP<sub>L</sub><sup>val</sup> | FLOPs | weights |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| **YOLOR-P6** | 1280 | **52.5%** | **70.6%** | **57.4%** | **37.4%** | **57.3%** | **65.2%** | 326G | [yolor-p6.pt](https://drive.google.com/file/d/1WyzcN1-I0n8BoeRhi_xVt8C5msqdx_7k/view?usp=sharing) |
-| **YOLOR-W6** | 1280 | **54.0%** | **72.1%** | **59.1%** | **38.1%** | **58.8%** | **67.0%** | 454G | [yolor-w6.pt](https://drive.google.com/file/d/1KnkBzNxATKK8AiDXrW_qF-vRNOsICV0B/view?usp=sharing) |
-| **YOLOR-E6** | 1280 | **54.6%** | **72.5%** | **59.8%** | **39.9%** | **59.0%** | **67.9%** | 684G | [yolor-e6.pt](https://drive.google.com/file/d/1jVrq8R1TA60XTUEqqljxAPlt0M_MAGC8/view?usp=sharing) |
-| **YOLOR-D6** | 1280 | **55.4%** | **73.5%** | **60.6%** | **40.4%** | **60.1%** | **68.7%** | 937G | [yolor-d6.pt](https://drive.google.com/file/d/1WX33ymg_XJLUJdoSf5oUYGHAtpSG2gj8/view?usp=sharing) |
+| **YOLOR-P6** | 1280 | **52.5%** | **70.6%** | **57.4%** | **37.4%** | **57.3%** | **65.2%** | 326G | [yolor-p6.pt](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-p6.pt) |
+| **YOLOR-W6** | 1280 | **54.0%** | **72.1%** | **59.1%** | **38.1%** | **58.8%** | **67.0%** | 454G | [yolor-w6.pt](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-w6.pt) |
+| **YOLOR-E6** | 1280 | **54.6%** | **72.5%** | **59.8%** | **39.9%** | **59.0%** | **67.9%** | 684G | [yolor-e6.pt](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-e6.pt) |
+| **YOLOR-D6** | 1280 | **55.4%** | **73.5%** | **60.6%** | **40.4%** | **60.1%** | **68.7%** | 937G | [yolor-d6.pt](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-d6.pt) |
 |  |  |  |  |  |  |  |  |
-| **YOLOR-S** | 640 | **40.7%** | **59.8%** | **44.2%** | **24.3%** | **45.7%** | **53.6%** | 21G |  |
-| **YOLOR-S**<sub>DWT</sub> | 640 | **40.6%** | **59.4%** | **43.8%** | **23.4%** | **45.8%** | **53.4%** | 21G |  |
-| **YOLOR-S<sup>2</sup>**<sub>DWT</sub> | 640 | **39.9%** | **58.7%** | **43.3%** | **21.7%** | **44.9%** | **53.4%** | 20G |  |
-| **YOLOR-S<sup>3</sup>**<sub>S2D</sub> | 640 | **39.3%** | **58.2%** | **42.4%** | **21.3%** | **44.6%** | **52.6%** | 18G |  |
-| **YOLOR-S<sup>3</sup>**<sub>DWT</sub> | 640 | **39.4%** | **58.3%** | **42.5%** | **21.7%** | **44.3%** | **53.0%** | 18G |  |
-| **YOLOR-S<sup>4</sup>**<sub>S2D</sub> | 640 | **36.9%** | **55.3%** | **39.7%** | **18.1%** | **41.9%** | **50.4%** | 16G | [weights](https://drive.google.com/file/d/1rFoRk1ZoKvE8kbxAl2ABBy6m9Zl6_k4Y/view?usp=sharing) |
-| **YOLOR-S<sup>4</sup>**<sub>DWT</sub> | 640 | **37.0%** | **55.3%** | **39.9%** | **18.4%** | **41.9%** | **51.0%** | 16G | [weights](https://drive.google.com/file/d/1IZ1ix1hwUjEMcCMpl67CHQp98XOjcIsv/view?usp=sharing) |
+| **YOLOR-S** | 640 | **40.7%** | **59.8%** | **44.2%** | **24.3%** | **45.7%** | **53.6%** | 21G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-s.pt) |
+| **YOLOR-S**<sub>DWT</sub> | 640 | **40.6%** | **59.4%** | **43.8%** | **23.4%** | **45.8%** | **53.4%** | 21G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-s-dwt.pt) |
+| **YOLOR-S<sup>2</sup>**<sub>DWT</sub> | 640 | **39.9%** | **58.7%** | **43.3%** | **21.7%** | **44.9%** | **53.4%** | 20G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-ss-dwt.pt) |
+| **YOLOR-S<sup>3</sup>**<sub>S2D</sub> | 640 | **39.3%** | **58.2%** | **42.4%** | **21.3%** | **44.6%** | **52.6%** | 18G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-sss-s2d.pt) |
+| **YOLOR-S<sup>3</sup>**<sub>DWT</sub> | 640 | **39.4%** | **58.3%** | **42.5%** | **21.7%** | **44.3%** | **53.0%** | 18G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-sss-dwt.pt) |
+| **YOLOR-S<sup>4</sup>**<sub>S2D</sub> | 640 | **36.9%** | **55.3%** | **39.7%** | **18.1%** | **41.9%** | **50.4%** | 16G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-ssss-s2d.pt) |
+| **YOLOR-S<sup>4</sup>**<sub>DWT</sub> | 640 | **37.0%** | **55.3%** | **39.9%** | **18.4%** | **41.9%** | **51.0%** | 16G | [weights](https://github.com/WongKinYiu/yolor/releases/download/weights/yolor-ssss-dwt.pt) |
 |  |  |  |  |  |  |  |  |
 
 New training scheme: train 300 epochs only.
